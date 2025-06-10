@@ -1,0 +1,40 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const chatLog = document.getElementById('chat-log');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send-button');
+
+    const sendMessage = async () => {
+        const userMessage = userInput.value.trim();
+        if (userMessage === '') return;
+
+        appendMessage(userMessage, 'user-message');
+        userInput.value = '';
+
+        try {
+            const response = await fetch(`https://text.pollinations.ai/?prompt=${encodeURIComponent(userMessage)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const aiMessage = await response.text();
+            appendMessage(aiMessage, 'ai-message');
+        } catch (error) {
+            console.error('Error fetching AI response:', error);
+            appendMessage('Sorry, something went wrong. Please try again.', 'ai-message');
+        }
+    };
+
+    const appendMessage = (message, className) => {
+        const messageElement = document.createElement('div');
+        messageElement.className = `message ${className}`;
+        messageElement.textContent = message;
+        chatLog.appendChild(messageElement);
+        chatLog.scrollTop = chatLog.scrollHeight;
+    };
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+});
