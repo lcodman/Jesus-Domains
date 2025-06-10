@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         userInput.value = '';
 
         try {
-            const response = await fetch(`https://text.pollinations.ai/?prompt=${encodeURIComponent(userMessage)}`);
+            const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(userMessage)}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
