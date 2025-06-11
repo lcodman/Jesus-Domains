@@ -13,7 +13,7 @@ body{
 
 a{
   background-color: #5AC4F7;
-  font-size: 30px;
+  font-size: 10%;
   border-radius: 10px;
   padding: 10px;
   display: inline-block;
@@ -27,7 +27,7 @@ a{
 
 a:hover{
   background-color: #A5E1FA;
-  font-size: 30px;
+  font-size: 10px;
   border-radius: 10px;
   padding: 10px;
   display: inline-block;
