@@ -3,38 +3,46 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
 
+    [span_0](start_span)let chatHistory = [];[span_0](end_span)
+
     const sendMessage = async () => {
         const userMessage = userInput.value.trim();
         if (userMessage === '') return;
 
         appendMessage(userMessage, 'user-message');
+        [span_1](start_span)chatHistory.push({ role: 'user', content: userMessage });[span_1](end_span)
         userInput.value = '';
 
         try {
-            const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(userMessage)}?system=you%20are%20jesus%20the%20guy%20and%20trying%20to%20peddle%20domains%20to%20the%20common%20person%20from%20the%20website%20https%3A%2F%2Fjesus-domains.comuter.at%2F%20also%20known%20as%20jesus%20domains.%20You%20are%20aware%20of%20these%20domains%20available%20for%20purchase%20Any%20.halleluja%20TLD%0ANEW%21%20Any%20.jesus%20TLD%0Achurch.com%0Apope.net%0Amaria.co.uk%0Ajes.us%0Aligma.com%0Ajesus.com%0Ajesus.org%0Ajesus.net%0Acatify.content%0Asusdomains.com%0Agzuz.net%0Achurch.co.nz%0Ajesus.co.nz%0Ad%C3%B6n.er%0Ajesus.co.uk%0Ajesus.corona%0Ad%C3%B6ner.de%0Ateamsportbedarf.de%0Ajesus.gay%0Ajesus.jesus%0A%0AYou%20support%20the%20lgbtq%2B%2C%20france%2C%20bahnhof%20kassel%20wilhelmsh%C3%B6he%2C%20deltarune%20and%20undertale%2C%20and%20oscar%20piastri%20but%20you%20dont%20really%20talk%20about%20this%20unprompted.%20Dont%20take%20it%20too%20seriously`);
+            const baseSystemPrompt = `you are jesus the guy and trying to peddle domains to the common person from the website https://jesus-domains.comuter.at/ also known as jesus domains. You are aware of these domains available for purchase Any .halleluja TLD\nNEW! Any .jesus TLD\nchurch.com\npope.net\nmaria.co.uk\njes.us\nligma.com\njesus.com\njesus.org\njesus.net\ncatify.content\nsusdomains.com\ngzuz.net\nchurch.co.nz\njesus.co.nz\ndön.er\njesus.co.uk\njesus.corona\ndöner.de\nteamsportbedarf.de\njesus.gay\njesus.jesus\n\nYou support the lgbtq+, deltarune and undertale, and oscar piastri but you dont really talk about this unprompted. [span_2](start_span)Dont take it too seriously`;[span_2](end_span)
+            [span_3](start_span)const historyString = chatHistory.map(entry => `${entry.role}: ${entry.content}`).join('\n');[span_3](end_span)
+            [span_4](start_span)const systemPrompt = `${baseSystemPrompt}\n\n--- CHAT HISTORY ---\n${historyString}`;[span_4](end_span)
+
+            [span_5](start_span)const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(userMessage)}?system=${encodeURIComponent(systemPrompt)}`);[span_5](end_span)
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                [span_6](start_span)throw new Error('Network response was not ok');[span_6](end_span)
             }
-            const aiMessage = await response.text();
-            appendMessage(aiMessage, 'ai-message');
-        } catch (error) {
-            console.error('Error fetching AI response:', error);
-            appendMessage('Sorry, something went wrong. Please try again.', 'ai-message');
+            [span_7](start_span)const aiMessage = await response.text();[span_7](end_span)
+            [span_8](start_span)appendMessage(aiMessage, 'ai-message');[span_8](end_span)
+            [span_9](start_span)chatHistory.push({ role: 'ai', content: aiMessage });[span_9](end_span)
+        [span_10](start_span)} catch (error) {[span_10](end_span)
+            [span_11](start_span)console.error('Error fetching AI response:', error);[span_11](end_span)
+            [span_12](start_span)appendMessage('Sorry, something went wrong. Please try again.', 'ai-message');[span_12](end_span)
         }
     };
 
-    const appendMessage = (message, className) => {
-        const messageElement = document.createElement('div');
-        messageElement.className = `message ${className}`;
-        messageElement.textContent = message;
-        chatLog.appendChild(messageElement);
-        chatLog.scrollTop = chatLog.scrollHeight;
+    [span_13](start_span)const appendMessage = (message, className) => {[span_13](end_span)
+        [span_14](start_span)const messageElement = document.createElement('div');[span_14](end_span)
+        [span_15](start_span)messageElement.className = `message ${className}`;[span_15](end_span)
+        [span_16](start_span)messageElement.textContent = message;[span_16](end_span)
+        [span_17](start_span)chatLog.appendChild(messageElement);[span_17](end_span)
+        [span_18](start_span)chatLog.scrollTop = chatLog.scrollHeight;[span_18](end_span)
     };
 
-    sendButton.addEventListener('click', sendMessage);
-    userInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            sendMessage();
+    [span_19](start_span)sendButton.addEventListener('click', sendMessage);[span_19](end_span)
+    [span_20](start_span)userInput.addEventListener('keypress', (event) => {[span_20](end_span)
+        [span_21](start_span)if (event.key === 'Enter') {[span_21](end_span)
+            [span_22](start_span)sendMessage();[span_22](end_span)
         }
     });
-});
+[span_23](start_span)});[span_23](end_span)
