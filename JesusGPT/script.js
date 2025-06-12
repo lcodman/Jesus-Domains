@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const userInput = document.getElementById('user-input');
     const sendButton = document.getElementById('send-button');
 
-    [span_0](start_span)let chatHistory = [];[span_0](end_span)
+    [span_0](start_span)var chatHistory = [];[span_0](end_span)
 
     const sendMessage = async () => {
         const userMessage = userInput.value.trim();
