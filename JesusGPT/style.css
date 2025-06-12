@@ -8,7 +8,7 @@ body {
     margin: 0;
 }
 
-a{
+.back{
   background-color: #5AC4F7;
   font-size: 150%;
   border-radius: 10px;
@@ -22,7 +22,7 @@ a{
   transition: transform .2s;
 }
 
-a:hover{
+.back:hover{
   background-color: #A5E1FA;
   font-size: 150%;
   border-radius: 10px;
