@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const historyString = chatHistory.map(entry => `${entry.role}: ${entry.content}`).join('\n');
             const systemPrompt = `${baseSystemPrompt}\n\n--- CHAT HISTORY ---\n${historyString}`;
 
-            const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(userMessage)}?system=${encodeURIComponent(systemPrompt)}?model=mistral`);
+            const response = await fetch(`https://text.pollinations.ai/${encodeURIComponent(userMessage)}?system=${encodeURIComponent(systemPrompt)}&?model=mistral`);
             
             if (!response.ok) {
                 throw new Error(`Network response was not ok. Status: ${response.status}`);
