@@ -48,3 +48,8 @@ h3{
 .mainLogo{
   border-radius: 150px;
 }
+
+.dark{
+  background-color: black;
+  color: red;
+}
