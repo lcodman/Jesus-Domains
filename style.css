@@ -43,6 +43,10 @@ h3{
   font-size: 40px;
 }
 
+ul{
+  list-style: none;
+}
+
 /*CLASSES*/
 
 .mainLogo{
